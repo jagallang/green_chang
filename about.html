@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>회사소개 · 그린창</title>
+<meta name="description" content="유리창 청소전문기업 그린창. 10년 경력의 베테랑 청소팀이 아파트, 빌라, 상가, 빌딩, 사무실, 학교까지 깨끗하게." />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
+<style>
+  :root{
+    --pine:#1B6FA6; --pine-2:#155D8C; --primary:#2196F3; --teal:#42A5F5;
+    --mint:#BBDEFB; --mint-soft:#E3F2FD; --accent:#F5A623; --accent-dark:#E08C0B;
+    --ink:#1A2B3C; --muted:#5A7184; --bg:#FFFFFF; --bg-soft:#F0F7FF; --line:#D0E3F0;
+    --shadow:0 8px 26px rgba(33,150,243,.12);
+    --font:'Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
+  html{scroll-behavior:smooth;font-size:18px}
+  body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.7;font-size:1.18rem;-webkit-font-smoothing:antialiased}
+  a{color:inherit;text-decoration:none}
+  .wrap{max-width:760px;margin:0 auto;padding:0 22px}
+
+  header.bar{position:sticky;top:0;z-index:50;background:#fff;border-bottom:2px solid var(--line)}
+  .bar-in{display:flex;align-items:center;justify-content:space-between;gap:12px;height:72px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:900;font-size:1.5rem;color:var(--ink)}
+  .brand .mark{width:34px;height:27px;border-radius:7px;background:var(--primary);position:relative;flex:0 0 auto}
+  .brand .mark::before{content:"";position:absolute;inset:6px;border:2px solid var(--mint);border-radius:3px}
+  .bar-call{display:inline-flex;align-items:center;gap:8px;background:var(--accent);color:#3a2400;
+    font-weight:900;font-size:1.18rem;padding:13px 22px;border-radius:14px;white-space:nowrap}
+  .bar-call:hover{background:var(--accent-dark)}
+
+  .hero{background:var(--pine);color:#fff;text-align:center;padding:54px 0 60px}
+  .hero h1{font-size:2.4rem;font-weight:900;line-height:1.35;letter-spacing:-1px;margin-bottom:14px}
+  .hero h1 .hl{color:var(--accent)}
+  .hero p{font-size:1.25rem;color:#D6E8F5;max-width:540px;margin:0 auto}
+
+  .sec{padding:58px 0}
+  .sec.soft{background:var(--bg-soft)}
+  .sec h2{font-size:2.1rem;font-weight:900;text-align:center;line-height:1.35;margin-bottom:10px;letter-spacing:-.5px}
+  .sec .lead{text-align:center;font-size:1.25rem;color:var(--muted);margin-bottom:38px}
+
+  .about-msg{font-size:1.2rem;line-height:1.8;color:var(--ink);max-width:600px;margin:0 auto;text-align:center}
+  .about-msg b{color:var(--primary)}
+
+  .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .svc-card{background:#fff;border:2px solid var(--line);border-radius:20px;padding:30px 20px;text-align:center;
+    transition:transform .2s,box-shadow .2s}
+  .svc-card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .svc-card .icon{font-size:3rem;margin-bottom:14px}
+  .svc-card h3{font-size:1.3rem;font-weight:900;margin-bottom:8px}
+  .svc-card p{font-size:1.05rem;color:var(--muted);line-height:1.5}
+  @media(max-width:560px){.svc-grid{grid-template-columns:1fr}}
+
+  .timeline{display:flex;flex-direction:column;gap:20px;max-width:500px;margin:0 auto}
+  .tl-item{display:flex;gap:18px;align-items:flex-start}
+  .tl-year{flex:0 0 auto;background:var(--primary);color:#fff;font-weight:900;font-size:1.1rem;
+    padding:8px 16px;border-radius:12px;min-width:70px;text-align:center}
+  .tl-text{font-size:1.1rem;color:var(--ink);padding-top:6px}
+
+  .info-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:560px;margin:0 auto}
+  .info-item{background:#fff;border:2px solid var(--line);border-radius:16px;padding:20px;text-align:center;
+    transition:transform .2s,box-shadow .2s}
+  .info-item:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
+  .info-item .il{font-size:.95rem;color:var(--muted);margin-bottom:4px}
+  .info-item .iv{font-size:1.2rem;font-weight:900;color:var(--ink)}
+  @media(max-width:560px){.info-grid{grid-template-columns:1fr}}
+
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:800;
+    font-size:1.32rem;padding:20px 30px;border-radius:16px;border:0;cursor:pointer;min-height:64px;
+    font-family:inherit;transition:transform .15s,box-shadow .15s,background .15s;width:100%;max-width:460px}
+  .btn-call{background:var(--accent);color:#3a2400}
+  .btn-call:hover{background:var(--accent-dark);transform:translateY(-2px)}
+  .btn-dark{background:var(--primary);color:#fff}
+  .btn-dark:hover{background:var(--pine);transform:translateY(-2px)}
+
+  .cta-sec{text-align:center;padding:56px 0}
+  .cta-sec h2{font-size:2.1rem;font-weight:900;margin-bottom:8px}
+  .cta-sec p{font-size:1.25rem;color:var(--muted);margin-bottom:26px}
+  .cta-sec .num{font-size:2.5rem;font-weight:900;color:var(--primary);margin-bottom:18px;letter-spacing:-1px}
+  .cta-btns{display:flex;flex-direction:column;gap:14px;max-width:460px;margin:0 auto}
+
+  footer{background:#155D8C;color:#D6E8F5;font-size:1.02rem;padding:30px 0;text-align:center;line-height:1.7}
+  footer b{color:#FFFFFF}
+</style>
+</head>
+<body>
+
+<header class="bar">
+  <div class="wrap bar-in">
+    <a class="brand" href="index.html"><span class="mark"></span>그린창</a>
+    <div style="display:flex;align-items:center;gap:14px">
+      <a href="index.html" style="font-weight:800;font-size:1rem;color:var(--muted)">홈</a>
+      <a class="bar-call" href="tel:01038822401">📞 친절 상담</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <h1><span class="hl">미세먼지, 숨은 얼룩</span><br>보이지 않는 곳이 더 중요합니다</h1>
+    <p>숨어있는 0.1%의 만족감까지, 그린창이 책임집니다.</p>
+  </div>
+</section>
+
+<!-- 대표 인사말 -->
+<section class="sec">
+  <div class="wrap">
+    <h2>대표 인사말</h2>
+    <p class="lead">안녕하세요, 그린창 대표입니다.</p>
+    <div class="about-msg">
+      10년간 수천 세대의 창문을 청소하면서 한 가지를 깨달았습니다.<br><br>
+      고객이 진정으로 원하는 것은 <b>깨끗한 유리창</b>이 아니라,<br>
+      <b>맑은 햇살이 들어오는 집</b>이라는 것을.<br><br>
+      그래서 저희는 보이는 곳뿐 아니라<br>
+      창틀 틈새, 방충망, 유리 바깥면까지<br>
+      <b>눈에 보이지 않는 곳</b>을 더 신경 씁니다.<br><br>
+      처음 말씀드린 금액 그대로, 추가요금 없이.<br>
+      <b>10년 경력의 베테랑 팀</b>이 책임지고 해드립니다.
+    </div>
+  </div>
+</section>
+
+<!-- 서비스 영역 -->
+<section class="sec soft">
+  <div class="wrap">
+    <h2>서비스 영역</h2>
+    <p class="lead">주거부터 상업시설까지, 모든 유리창을 깨끗하게.</p>
+    <div class="svc-grid">
+      <div class="svc-card">
+        <div class="icon">🏢</div>
+        <h3>아파트·빌라·주택</h3>
+        <p>미세먼지와 황사로 더러워진 창문청소. 외장부터 창틀까지 확실히 책임집니다.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon">🏬</div>
+        <h3>상가·빌딩</h3>
+        <p>음식점, 카페, 매장의 투명한 창으로 고객 신뢰도와 매장 분위기를 바꿔보세요.</p>
+      </div>
+      <div class="svc-card">
+        <div class="icon">🏫</div>
+        <h3>사무실·학교·관공서</h3>
+        <p>풍부한 경험의 베테랑 청소팀이 업무·교육 환경을 확 바꿔드립니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 연혁 -->
+<section class="sec">
+  <div class="wrap">
+    <h2>그린창 연혁</h2>
+    <p class="lead">꾸준히 성장해 온 10년의 기록.</p>
+    <div class="timeline">
+      <div class="tl-item"><span class="tl-year">2016</span><span class="tl-text">그린창 창업, 아파트 창문청소 전문 시작</span></div>
+      <div class="tl-item"><span class="tl-year">2018</span><span class="tl-text">수도권 전역 출장 서비스 확대</span></div>
+      <div class="tl-item"><span class="tl-year">2020</span><span class="tl-text">상가·빌딩 외부 유리청소 서비스 런칭</span></div>
+      <div class="tl-item"><span class="tl-year">2022</span><span class="tl-text">누적 시공 500건 돌파</span></div>
+      <div class="tl-item"><span class="tl-year">2024</span><span class="tl-text">사무실·학교·관공서 유리청소 서비스 확장</span></div>
+      <div class="tl-item"><span class="tl-year">2026</span><span class="tl-text">안양 사무실 이전, 온라인 견적 시스템 오픈</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 회사 정보 -->
+<section class="sec soft">
+  <div class="wrap">
+    <h2>회사 정보</h2>
+    <div class="info-grid">
+      <div class="info-item"><div class="il">상호명</div><div class="iv">그린창</div></div>
+      <div class="info-item"><div class="il">대표 전화</div><div class="iv">010-3882-2401</div></div>
+      <div class="info-item"><div class="il">주소</div><div class="iv">경기 안양시 동안구<br>관악대로454번길 7, 102호</div></div>
+      <div class="info-item"><div class="il">운영시간</div><div class="iv">09:00 – 18:00</div></div>
+      <div class="info-item"><div class="il">서비스 지역</div><div class="iv">서울·경기·인천<br>수도권 전역</div></div>
+      <div class="info-item"><div class="il">카카오톡</div><div class="iv"><a href="https://pf.kakao.com/_CmBxos" target="_blank" rel="noopener" style="color:var(--primary)">💬 카톡 상담하기</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-sec">
+  <div class="wrap">
+    <h2>지금 바로 상담하세요</h2>
+    <p>견적부터 시공까지, 친절하게 안내드립니다.</p>
+    <div class="num">010-3882-2401</div>
+    <div class="cta-btns">
+      <a class="btn btn-call" href="tel:01038822401">📞 전화 걸기</a>
+      <a class="btn btn-dark" href="index.html#quote">예상 금액 보기</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <b>그린창</b> · 아파트 창문청소<br>
+  경기 안양시 동안구 관악대로454번길 7, 102호 (우 13949)<br>
+  전화 010-3882-2401 · 운영시간 09:00–18:00<br>
+  © 2026 그린창
+</footer>
+
+<script>
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+}, {threshold:0.15});
+document.querySelectorAll('.svc-card,.tl-item,.info-item').forEach(el => {
+  el.classList.add('fade-in'); io.observe(el);
+});
+</script>
+</body>
+</html>
