@@ -44,13 +44,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" />
 <style>
   :root{
-    --pine:#127C74; --pine-2:#0F6E67; --primary:#0E8C7F; --teal:#15A594;
-    --mint:#B6EBE0; --mint-soft:#EAF8F5; --accent:#F5A623; --accent-dark:#E08C0B;
-    --ink:#14332E; --muted:#54706B; --bg:#FFFFFF; --bg-soft:#F5FBFA; --line:#DCEFEB;
-    --shadow:0 8px 26px rgba(18,124,116,.12);
+    --pine:#1B6FA6; --pine-2:#155D8C; --primary:#2196F3; --teal:#42A5F5;
+    --mint:#BBDEFB; --mint-soft:#E3F2FD; --accent:#F5A623; --accent-dark:#E08C0B;
+    --ink:#1A2B3C; --muted:#5A7184; --bg:#FFFFFF; --bg-soft:#F0F7FF; --line:#D0E3F0;
+    --shadow:0 8px 26px rgba(33,150,243,.12);
     --font:'Pretendard','Pretendard Variable',-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+  .fade-in{opacity:0;transform:translateY(30px);transition:opacity .6s ease,transform .6s ease}
+  .fade-in.visible{opacity:1;transform:translateY(0)}
   html{scroll-behavior:smooth;font-size:18px}
   body{font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.7;font-size:1.18rem;-webkit-font-smoothing:antialiased}
   a{color:inherit;text-decoration:none}
@@ -100,7 +103,8 @@
   /* 왜 청소해야 하나 / 왜 그린창 — 큰 줄 카드 */
   .rows{display:flex;flex-direction:column;gap:16px}
   .row{display:flex;align-items:center;gap:20px;background:#fff;border:2px solid var(--line);
-    border-radius:18px;padding:22px 24px}
+    border-radius:18px;padding:22px 24px;transition:transform .2s,box-shadow .2s}
+  .row:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
   .row .emo{font-size:2.6rem;flex:0 0 auto;width:64px;text-align:center}
   .row h3{font-size:1.5rem;font-weight:900;margin-bottom:3px}
   .row p{font-size:1.18rem;color:var(--muted);line-height:1.55}
@@ -150,7 +154,9 @@
 
   /* 후기 */
   .reviews{display:flex;flex-direction:column;gap:16px}
-  .review{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px}
+  .review{background:#fff;border:2px solid var(--line);border-radius:18px;padding:24px;
+    transition:transform .2s,box-shadow .2s}
+  .review:hover{transform:translateY(-3px);box-shadow:var(--shadow)}
   .review .stars{color:var(--accent);font-size:1.4rem;letter-spacing:3px;margin-bottom:8px}
   .review p{font-size:1.22rem;color:var(--ink);margin-bottom:10px;line-height:1.55}
   .review .who{font-size:1.05rem;color:var(--muted);font-weight:700}
@@ -194,7 +200,7 @@
   .final .num{font-size:2.5rem;font-weight:900;color:var(--primary);margin-bottom:18px;letter-spacing:-1px}
   .final .btn{max-width:460px;margin:0 auto}
 
-  footer{background:#0F6E67;color:#D6F0EB;font-size:1.02rem;padding:30px 0;text-align:center;line-height:1.7}
+  footer{background:#155D8C;color:#D6E8F5;font-size:1.02rem;padding:30px 0;text-align:center;line-height:1.7}
   footer b{color:#FFFFFF}
   /* 서비스 탭 */
   .svc-tabs{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:22px}
@@ -209,8 +215,10 @@
   @media(max-width:560px){.svc-tabs{grid-template-columns:1fr}}
   /* 갤러리 */
   .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-  .gitem{aspect-ratio:1/1;border-radius:14px;background:linear-gradient(135deg,#dfeeea,#bfe0d8);
-    display:flex;align-items:center;justify-content:center;color:#4a6b64;font-weight:800;border:2px solid var(--line);overflow:hidden}
+  .gitem{aspect-ratio:1/1;border-radius:14px;background:linear-gradient(135deg,#dce8f5,#b8d4ed);
+    display:flex;align-items:center;justify-content:center;color:#4a6478;font-weight:800;border:2px solid var(--line);overflow:hidden;
+    transition:transform .25s,box-shadow .25s}
+  .gitem:hover{transform:scale(1.04);box-shadow:var(--shadow)}
   .gitem img{width:100%;height:100%;object-fit:cover}
   @media(max-width:560px){.gallery{grid-template-columns:repeat(2,1fr)}}
 
@@ -578,6 +586,14 @@ document.querySelectorAll('#svcTabs button').forEach(b => b.addEventListener('cl
 }));
 /* 방충망·외부창·갤러리의 '신청하기' → 신청 폼 열기 */
 document.querySelectorAll('.js-apply').forEach(b => b.addEventListener('click', () => document.getElementById('applyBtn').click()));
+
+/* 스크롤 애니메이션 */
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); }});
+}, {threshold:0.15});
+document.querySelectorAll('.row,.ba,.gitem,.review,.faq,.step,.trust-item').forEach(el => {
+  el.classList.add('fade-in'); io.observe(el);
+});
 </script>
 </body>
 </html>
